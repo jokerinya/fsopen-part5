@@ -1,0 +1,10 @@
+POST http://localhost:3003/api/v1/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhlbGxhcyIsImlkIjoiNjJjOWQ3MTNjZmIwZTk4YmI0MzBkNGJlIiwiaWF0IjoxNjU3NDc2MTg1LCJleHAiOjE2NjAwNjgxODV9.6KW5-7FN1mSL20SQTUFsywSVnuCtE5WnD2GyXBD_rMw
+
+{
+    "title": "React patterns",
+    "author": "Michael Chan",
+    "url": "https://reactpatterns.com/",
+    "likes": 7
+}
