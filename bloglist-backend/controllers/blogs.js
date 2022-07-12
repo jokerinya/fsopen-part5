@@ -70,26 +70,30 @@ blogRouter.delete(
 );
 
 blogRouter.put('/:id', async (request, response) => {
-    const { author, url, likes, title } = request.body;
+    const { author, url, likes, title, user } = request.body;
 
-    if (!author || !url || !title || !likes) {
+    if (!author || !url || !title || !likes || !user) {
         return response.status(400).json({
-            error: 'make sure all required fields are sent (title, author, url, likes)',
+            error: 'make sure all required fields are sent (title, author, url, likes, user)',
         });
     }
 
-    const blog = { url, author, title, likes };
+    const blog = { url, author, title, likes, user };
     const updatedBlog = await Blog.findByIdAndUpdate(request.params.id, blog, {
         new: true,
         runValidators: true,
         context: 'query',
+    }).populate('user', {
+        username: 1,
+        name: 1,
+        id: 1,
     });
 
     if (updatedBlog) {
         response.status(201).json(updatedBlog);
     } else {
         response.status(400).json({
-            error: `No person with this id: '${request.params.id}'`,
+            error: `No blog with this id: '${request.params.id}'`,
         });
     }
 });

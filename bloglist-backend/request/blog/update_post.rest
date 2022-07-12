@@ -1,16 +1,17 @@
-PUT http://localhost:3001/api/v1/blogs/62bf5d763b534e9630294a82
+PUT http://localhost:3003/api/v1/blogs/62cc997d240d90173f6e6974
 Content-Type: application/json
 
 {
     "title": "Blog One",
     "author": "Author One",
     "url": "blog-one",
-    "likes": 9,
-    "id": "62bf5d763b534e9630294a82"
+    "likes": 11,
+    "user": "62c9cf603319253aff9ef7a9",
+    "id": "62cc997d240d90173f6e6974"
 }
 
 ###
-PUT http://localhost:3001/api/v1/blogs/62bf5d763b534e9630294a82
+PUT http://localhost:3003/api/v1/blogs/62bf5d763b534e9630294a82
 Content-Type: application/json
 
 {
