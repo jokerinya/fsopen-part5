@@ -30,7 +30,7 @@ const Blog = ({ blog, user, onBlogLike, onBlogDelete }) => {
     };
 
     const details = () => (
-        <>
+        <div className='blog-details'>
             <div>{blog.url}</div>
             <div>
                 likes {blog.likes}{' '}
@@ -40,18 +40,18 @@ const Blog = ({ blog, user, onBlogLike, onBlogDelete }) => {
             {createdByUser && (
                 <button onClick={handleRemoveClick}>remove</button>
             )}
-        </>
+        </div>
     );
 
     return (
-        <div style={blogStyle}>
+        <div style={blogStyle} className='blog-container'>
             <div>
                 {blog.title} {blog.author}
                 <button onClick={() => setViewDetails(!viewDetails)}>
                     {viewDetails ? 'hide' : 'view'}
                 </button>
-                {viewDetails && details()}
             </div>
+            {viewDetails && details()}
         </div>
     );
 };
@@ -59,8 +59,8 @@ const Blog = ({ blog, user, onBlogLike, onBlogDelete }) => {
 Blog.propTypes = {
     blog: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
-    onBlogLike: PropTypes.func.isRequired,
-    onBlogDelete: PropTypes.func.isRequired,
+    onBlogLike: PropTypes.func,
+    onBlogDelete: PropTypes.func,
 };
 
 export default Blog;

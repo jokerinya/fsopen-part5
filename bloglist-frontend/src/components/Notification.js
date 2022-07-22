@@ -10,9 +10,9 @@ const Notification = ({ message }) => {
 
 Notification.propTypes = {
     message: PropTypes.shape({
-        type: PropTypes.oneOf[('success', 'error')] || null,
+        type: PropTypes.oneOf(['success', 'error']) || null,
         content: PropTypes.string || null,
-    }),
+    }).isRequired,
 };
 
 export default Notification;
