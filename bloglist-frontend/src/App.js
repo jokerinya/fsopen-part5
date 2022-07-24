@@ -151,7 +151,7 @@ const App = () => {
 
     const createBlogFormArea = () => (
         <>
-            <Togglable buttonLabel='new note' ref={createFormRef}>
+            <Togglable buttonLabel='new blog' ref={createFormRef}>
                 <BlogForm onCreateBlogFormSubmit={handleCreateBlogFormSubmit} />
             </Togglable>
         </>

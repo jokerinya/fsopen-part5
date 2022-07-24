@@ -32,6 +32,11 @@ app.use(middlewares.requestLogger);
 app.use('/api/v1/blogs', blogRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/login', loginRouter);
+// testing router only avaible in testing env
+if (process.env.NODE_ENV === 'test') {
+    const testingRouter = require('./controllers/testing');
+    app.use('/api/v1/testing', testingRouter);
+}
 
 // This must be the last middleware
 app.use(middlewares.errorHandler);
