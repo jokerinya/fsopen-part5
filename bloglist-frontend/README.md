@@ -343,4 +343,4 @@ Note that you might end up having problems if you click a like button many times
 
 ---
 
-This was the last exercise of this part, and it's time to push your code to github and mark the exercises you completed in the exercise submission system.
+This was the last exercise of this part, and it's time to push your code to github and mark the exercises you completed in the [exercise submission system.](https://studies.cs.helsinki.fi/stats/courses/fullstackopen).
