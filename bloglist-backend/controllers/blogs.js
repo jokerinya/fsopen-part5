@@ -33,11 +33,21 @@ blogRouter.post('/', middlewares.userExtractor, async (request, response) => {
     const savedBlog = await blog.save();
     user.blogs = [...user.blogs, savedBlog];
     await user.save();
-    response.status(201).json(savedBlog);
+    response.status(201).json(
+        await savedBlog.populate('user', {
+            username: 1,
+            name: 1,
+            id: 1,
+        })
+    );
 });
 
 blogRouter.get('/:id', async (request, response) => {
-    const blog = await Blog.findById(request.params.id);
+    const blog = await Blog.findById(request.params.id).populate('user', {
+        username: 1,
+        name: 1,
+        id: 1,
+    });
     if (blog) {
         response.status(200).json(blog);
     } else {
