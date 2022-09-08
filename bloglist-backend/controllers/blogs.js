@@ -1,14 +1,20 @@
 const blogRouter = require('express').Router();
 
 const Blog = require('../models/blog');
+const Comment = require('../models/comment');
 const middlewares = require('../utils/middlewares');
 
 blogRouter.get('/', async (request, response) => {
-    const blogs = await Blog.find({}).populate('user', {
-        username: 1,
-        name: 1,
-        id: 1,
-    });
+    const blogs = await Blog.find({})
+        .populate('user', {
+            username: 1,
+            name: 1,
+            id: 1,
+        })
+        .populate('comments', {
+            content: 1,
+            id: 1,
+        });
     response.status(200).json(blogs);
 });
 
@@ -106,5 +112,19 @@ blogRouter.put('/:id', async (request, response) => {
             error: `No blog with this id: '${request.params.id}'`,
         });
     }
+});
+
+blogRouter.post('/:id/comments', async (request, response) => {
+    const { content } = request.body;
+    const comment = new Comment({
+        content,
+        blog: request.params.id,
+    });
+
+    const savedComment = await comment.save();
+    const blog = await Blog.findById(request.params.id);
+    blog.comments = [...blog.comments, savedComment];
+    await blog.save();
+    response.status(201).json(savedComment);
 });
 module.exports = blogRouter;
