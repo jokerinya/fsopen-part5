@@ -99,11 +99,16 @@ blogRouter.put('/:id', async (request, response) => {
         new: true,
         runValidators: true,
         context: 'query',
-    }).populate('user', {
-        username: 1,
-        name: 1,
-        id: 1,
-    });
+    })
+        .populate('user', {
+            username: 1,
+            name: 1,
+            id: 1,
+        })
+        .populate('comments', {
+            id: 1,
+            content: 1,
+        });
 
     if (updatedBlog) {
         response.status(201).json(updatedBlog);
